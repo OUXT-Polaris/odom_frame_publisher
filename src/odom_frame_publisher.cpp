@@ -1,6 +1,21 @@
+/**
+ * @file odom_frame_publisher.cpp
+ * @author Masaya Kataoka (ms.kataoka@gmail.com)
+ * @brief Implimentation of the OdomFramePublisher Class
+ * @version 0.1
+ * @date 2019-09-23
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 // headers in this package
 #include <odom_frame_publisher/odom_frame_publisher.h>
 
+/**
+ * @brief Constructor of the OdomFramePublisher Class
+ * 
+ */
 OdomFramePublisher::OdomFramePublisher(ros::NodeHandle nh,ros::NodeHandle pnh):listenter_(buffer_)
 {
     buffer_.setUsingDedicatedThread(true);
@@ -27,11 +42,19 @@ OdomFramePublisher::OdomFramePublisher(ros::NodeHandle nh,ros::NodeHandle pnh):l
     current_pose_sub_ = nh_.subscribe(current_pose_topic_,1,&OdomFramePublisher::currentPoseCallback,this);
 }
 
+/**
+ * @brief Destructor of the OdomFramePublisher class
+ * 
+ */
 OdomFramePublisher::~OdomFramePublisher()
 {
 
 }
 
+/**
+ * @brief ROS callback function for the current pose topic
+ * 
+ */
 void OdomFramePublisher::currentPoseCallback(const geometry_msgs::PoseStamped::ConstPtr msg)
 {
     current_pose_recieved_ = true;
@@ -39,6 +62,10 @@ void OdomFramePublisher::currentPoseCallback(const geometry_msgs::PoseStamped::C
     return;
 }
 
+/**
+ * @brief ROS callback function for the current tiwst topic
+ * 
+ */
 void OdomFramePublisher::currentTwistCallback(const geometry_msgs::TwistStamped::ConstPtr msg)
 {
     data_.push_back(*msg);
@@ -100,24 +127,6 @@ void OdomFramePublisher::currentTwistCallback(const geometry_msgs::TwistStamped:
         tmp_tf_stamped.child_frame_id = odom_frame_id_;
         tf2::convert(latest_tf.inverse(), tmp_tf_stamped.transform);
         broadcaster_.sendTransform(tmp_tf_stamped);
-        /*
-        transform_stamped.header.frame_id = map_frame_id_;
-        transform_stamped.header.stamp = current_pose_.header.stamp;
-        transform_stamped.child_frame_id = odom_frame_id_;
-        geometry_msgs::Quaternion diff_quat = 
-            quaternion_operation::conjugate(current_odom_pose_.pose.orientation) * current_pose_.pose.orientation;
-        transform_stamped.transform.rotation = quaternion_operation::conjugate(diff_quat);
-        Eigen::Matrix3d diff_rotation_mat = quaternion_operation::getRotationMatrix(diff_quat);
-        Eigen::Vector3d odom_trans_vec;
-        odom_trans_vec(0) = current_odom_pose_.pose.position.x;
-        odom_trans_vec(1) = current_odom_pose_.pose.position.y;
-        odom_trans_vec(2) = current_odom_pose_.pose.position.z;
-        odom_trans_vec = diff_rotation_mat*odom_trans_vec;
-        transform_stamped.transform.translation.x = odom_trans_vec(0)-current_pose_.pose.position.x;
-        transform_stamped.transform.translation.y = odom_trans_vec(1)-current_pose_.pose.position.y;
-        transform_stamped.transform.translation.z = odom_trans_vec(2)-current_pose_.pose.position.z;
-        broadcaster_.sendTransform(transform_stamped);
-        */
     }
     return;
 }

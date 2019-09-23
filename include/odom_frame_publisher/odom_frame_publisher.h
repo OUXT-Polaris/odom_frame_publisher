@@ -1,6 +1,17 @@
 #ifndef ODOM_FRAME_PUBLISHER_ODOM_FRAME_PUBLISHER_H_INCLUDED
 #define ODOM_FRAME_PUBLISHER_ODOM_FRAME_PUBLISHER_H_INCLUDED
 
+/**
+ * @file odom_frame_publisher.h
+ * @author Masaya Kataoka (ms.kataoka@gmail.com)
+ * @brief Definition of the OdomFramePublisher Class
+ * @version 0.1
+ * @date 2019-09-23
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 // Headers in ROS
 #include <ros/ros.h>
 #include <geometry_msgs/TwistStamped.h>
@@ -12,6 +23,7 @@
 #include <tf2/convert.h>
 #include <tf2/impl/convert.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <nav_msgs/Odometry.h>
 
 // Headers in Boost
 #include <boost/circular_buffer.hpp>
