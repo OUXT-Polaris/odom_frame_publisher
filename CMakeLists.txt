@@ -12,7 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   tf2_msgs
   tf2_geometry_msgs
   quaternion_operation
-  nav_msgs
 )
 
 find_package(Eigen3 REQUIRED)
@@ -20,7 +19,7 @@ find_package(Eigen3 REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES odom_frame_publisher
-  CATKIN_DEPENDS geometry_msgs roscpp tf2_ros tf2 tf2_msgs tf2_geometry_msgs nav_msgs
+  CATKIN_DEPENDS geometry_msgs roscpp tf2_ros tf2 tf2_msgs tf2_geometry_msgs
 #  DEPENDS system_lib
 )
 

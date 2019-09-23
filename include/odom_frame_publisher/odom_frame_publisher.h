@@ -23,7 +23,6 @@
 #include <tf2/convert.h>
 #include <tf2/impl/convert.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
-#include <nav_msgs/Odometry.h>
 
 // Headers in Boost
 #include <boost/circular_buffer.hpp>

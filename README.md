@@ -27,3 +27,4 @@ Topics
 |param (current_pose_topic)|geometry_msgs/PoseStamped|Sub|Current Pose in map frame|
 |param (current_twist_topic)|geometry_msgs/TwistStamped|Sub|Current Twist in robot frame|
 |tf|tf/tfMessage|Pub,Sub|Publishing odom frame based on [REP105](https://www.ros.org/reps/rep-0105.html)|
+|~odom_pose|geometry_msgs/PoseStamped|Pub|Pose in the odom frame|
