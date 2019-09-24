@@ -13,6 +13,7 @@
 This node subscribe current Pose and Twist topic and publish odometry frame based on [REP105](https://www.ros.org/reps/rep-0105.html).
 
 Params
+
 | *param* | *Type* | *Description* | *Dfault* |
 | --------- | -------- | -------- | -------- |
 | current_pose_topic | string | Topic name of the current pose | /current_pose |
@@ -22,6 +23,7 @@ Params
 | odom_frame_id | string | frame_id of the odom | odom |
 
 Topics
+
 | *Topic* | *Type* | *Pub/Sub* | *Description* |
 | --------- | -------- | -------- | -------- |
 | param (current_pose_topic) | geometry_msgs/PoseStamped | Sub | Current Pose in map frame |
