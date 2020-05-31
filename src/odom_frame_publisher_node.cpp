@@ -10,10 +10,10 @@
  */
 
 // headers in this package
-#include <odom_frame_publisher/odom_frame_publisher.h>
+#include <odom_frame_publisher/odom_frame_publisher_component.hpp>
 
 // headers for ros
-#include <ros/ros.h>
+#include <rclcpp/rclcpp.hpp>
 
 /**
  * @brief main function
@@ -21,10 +21,9 @@
  */
 int main(int argc, char * argv[])
 {
-  ros::init(argc, argv, "odom_frame_publisher");
-  ros::NodeHandle nh;
-  ros::NodeHandle pnh("~");
-  OdomFramePublisher publisher(nh, pnh);
-  ros::spin();
+  //ros::init(argc, argv, "odom_frame_publisher");
+  //ros::NodeHandle nh;
+  //ros::NodeHandle pnh("~");
+  //OdomFramePublisher publisher(nh, pnh);
   return 0;
 }

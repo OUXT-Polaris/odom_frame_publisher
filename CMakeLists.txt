@@ -36,7 +36,6 @@ add_library(odom_frame_publisher_component SHARED
   src/odom_frame_publisher_component.cpp)
 target_compile_definitions(odom_frame_publisher_component
   PRIVATE "ODOM_FRAME_PUBLISHER_ODOM_FRAME_PUBLISHER_COMPONENT_BUILDING_DLL")
-target_link_libraries(odom_frame_publisher_component ${Boost_LIBRARIES})
 ament_target_dependencies(odom_frame_publisher_component
   rclcpp
   rclcpp_components
@@ -49,21 +48,20 @@ ament_target_dependencies(odom_frame_publisher_component
 rclcpp_components_register_nodes(odom_frame_publisher_component
   "odom_frame_publisher::NmeaGpsDriverComponent")
 
-#add_executable(odom_frame_publisher_node src/odom_frame_publisher_node.cpp src/odom_frame_publisher.cpp)
-#target_link_libraries(odom_frame_publisher_node ${catkin_LIBRARIES})
+add_executable(odom_frame_publisher_node
+  src/odom_frame_publisher_node.cpp
+)
+target_link_libraries(odom_frame_publisher_node odom_frame_publisher_component)
 
-#install(DIRECTORY include
-#  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#)
+install(TARGETS
+  odom_frame_publisher_node
+  DESTINATION lib/odom_frame_publisher
+)
+install(TARGETS odom_frame_publisher_component
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin)
+ament_export_libraries(odom_frame_publisher_component)
 
-#foreach(dir launch)
-#install(DIRECTORY ${dir}/
-#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
-#endforeach(dir)
-
-# Install library
-#install(TARGETS odom_frame_publisher_node
-#  ARCHIVE DESTINATION lib
-#  LIBRARY DESTINATION lib
-#  RUNTIME DESTINATION bin
-#)
+ament_export_include_directories(include)
+ament_package()
