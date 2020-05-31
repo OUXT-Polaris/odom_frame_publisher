@@ -11,6 +11,7 @@
 
 // headers in this package
 #include <odom_frame_publisher/odom_frame_publisher_component.hpp>
+#include <rclcpp_components/register_node_macro.hpp>
 
 namespace odom_frame_publisher
 {
@@ -125,3 +126,5 @@ void OdomFramePublisherComponent::currentPoseCallback(
   current_pose_ = *msg;
 }
 }
+
+RCLCPP_COMPONENTS_REGISTER_NODE(odom_frame_publisher::OdomFramePublisherComponent)

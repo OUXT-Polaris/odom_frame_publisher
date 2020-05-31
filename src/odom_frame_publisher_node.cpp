@@ -21,9 +21,10 @@
  */
 int main(int argc, char * argv[])
 {
-  //ros::init(argc, argv, "odom_frame_publisher");
-  //ros::NodeHandle nh;
-  //ros::NodeHandle pnh("~");
-  //OdomFramePublisher publisher(nh, pnh);
+  rclcpp::init(argc, argv);
+  rclcpp::NodeOptions options;
+  auto component = std::make_shared<odom_frame_publisher::OdomFramePublisherComponent>(options);
+  rclcpp::spin(component);
+  rclcpp::shutdown();
   return 0;
 }
