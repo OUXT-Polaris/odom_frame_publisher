@@ -103,7 +103,7 @@ void OdomFramePublisherComponent::currentTwistCallback(
       tmp_tf_stamped.header.stamp = current_pose_.header.stamp;
       tf2::toMsg(tmp_tf.inverse(), tmp_tf_stamped.pose);
       geometry_msgs::msg::PoseStamped odom_to_map;
-      //buffer_.transform(tmp_tf_stamped, odom_to_map, odom_frame_id_, rclcpp::Duration(0.1));
+      buffer_.transform(tmp_tf_stamped, odom_to_map, odom_frame_id_, tf2::durationFromSec(0.1));
       tf2::convert(odom_to_map.pose, latest_tf);
     } catch (...) {
       RCLCPP_ERROR(get_logger(), "Failed to subtract base to odom transform");
