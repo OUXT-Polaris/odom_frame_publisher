@@ -3,9 +3,11 @@
 
 ![Developed By OUXT Polaris](img/logo.png "Logo")
 
-| *master* | *develop* |
-|----------|-----------|
-|[![Build Status](https://travis-ci.org/OUXT-Polaris/odom_frame_publisher.svg?branch=master)](https://travis-ci.org/OUXT-Polaris/odom_frame_publisher)|[![Build Status](https://travis-ci.org/OUXT-Polaris/odom_frame_publisher.svg?branch=develop)](https://travis-ci.org/OUXT-Polaris/odom_frame_publisher)|
+
+
+| *ros2* |
+|----------|
+|[![Build Status](https://github.com/OUXT-Polaris/navi_sim/workflows/ROS2-Eloquent/badge.svg)](https://github.com/OUXT-Polaris/navi_sim/workflows/ROS2-Eloquent/badge.svg)|
 
 ## nodes
 ### odom_frame_publisher_node
