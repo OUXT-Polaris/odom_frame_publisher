@@ -3,9 +3,7 @@
 
 ![Developed By OUXT Polaris](img/logo.png "Logo")
 
-| *master* | *develop* |
-|----------|-----------|
-|[![Build Status](https://travis-ci.org/OUXT-Polaris/odom_frame_publisher.svg?branch=master)](https://travis-ci.org/OUXT-Polaris/odom_frame_publisher)|[![Build Status](https://travis-ci.org/OUXT-Polaris/odom_frame_publisher.svg?branch=develop)](https://travis-ci.org/OUXT-Polaris/odom_frame_publisher)|
+![ROS2-Foxy](https://github.com/OUXT-Polaris/odom_frame_publisher/workflows/ROS2-Foxy/badge.svg)
 
 ## nodes
 ### odom_frame_publisher_node
