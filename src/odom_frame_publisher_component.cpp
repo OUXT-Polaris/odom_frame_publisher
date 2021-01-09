@@ -118,8 +118,9 @@ void OdomFramePublisherComponent::currentTwistCallback(
       tf2::Quaternion q(current_pose_.pose.orientation.x, current_pose_.pose.orientation.y,
         current_pose_.pose.orientation.z, current_pose_.pose.orientation.w);
       tf2::Transform tmp_tf(q,
-        tf2::Vector3(current_pose_.pose.position.x, current_pose_.pose.position.y,
-        current_pose_.pose.position.z));
+        tf2::Vector3(
+          current_pose_.pose.position.x, current_pose_.pose.position.y,
+          current_pose_.pose.position.z));
       geometry_msgs::msg::PoseStamped tmp_tf_stamped;
       tmp_tf_stamped.header.frame_id = robot_frame_id_;
       tmp_tf_stamped.header.stamp = current_pose_.header.stamp;
