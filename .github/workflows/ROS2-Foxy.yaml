@@ -1,6 +1,11 @@
+
 name: ROS2-Foxy
 
-on: [push, pull_request]
+on:
+  schedule:
+    - cron: 0 0 * * *
+  push:
+  workflow_dispatch:
 
 jobs:
     job1:
@@ -9,7 +14,7 @@ jobs:
         steps:
             - name: ROS2 Install
               run: |
-                  # Ref: https://index.ros.org/doc/ros2/Installation/foxy/Linux-Install-Debians/
+                  # Ref: https://index.ros.org/doc/ros2/Installation/eloquent/Linux-Install-Debians/
                   sudo locale-gen en_US en_US.UTF-8
                   sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
                   export LANG=en_US.UTF-8
@@ -27,7 +32,7 @@ jobs:
             - name: Install dependencies
               run: |
                   source /opt/ros/foxy/setup.bash
-                  sudo apt install -y python3-rosdep python3-vcstool
+                  sudo apt install -y python3-rosdep python3-vcstool python3-sphinx-rtd-theme 
                   sudo rosdep init
                   rosdep update
                   cd ~/ros2_ws
