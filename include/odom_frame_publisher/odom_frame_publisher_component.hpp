@@ -77,6 +77,7 @@ extern "C" {
 #include <quaternion_operation/quaternion_operation.h>
 #include <tf2_ros/transform_broadcaster.h>
 #include <tf2_ros/transform_listener.h>
+#include <tf2_ros/buffer.h>
 #include <tf2/LinearMath/Transform.h>
 #include <tf2/convert.h>
 #include <tf2/impl/convert.h>
