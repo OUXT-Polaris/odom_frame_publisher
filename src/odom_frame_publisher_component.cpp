@@ -29,7 +29,6 @@
 // headers in ros2
 #include <rclcpp_components/register_node_macro.hpp>
 
-
 // headers in stl
 #include <memory>
 #include <string>
@@ -37,7 +36,9 @@
 namespace odom_frame_publisher
 {
 OdomFramePublisherComponent::OdomFramePublisherComponent(const rclcpp::NodeOptions & options)
-: Node("odom_frame_publisher", options), buffer_(get_clock()), listener_(buffer_),
+: Node("odom_frame_publisher", options),
+  buffer_(get_clock()),
+  listener_(buffer_),
   broadcaster_(this)
 {
   current_pose_recieved_ = false;
@@ -87,14 +88,14 @@ void OdomFramePublisherComponent::currentTwistCallback(
     orientation.z = (data_[0].twist.angular.z + data_[1].twist.angular.z) * duration * 0.5;
     geometry_msgs::msg::Quaternion twist_angular_quat =
       quaternion_operation::convertEulerAngleToQuaternion(orientation);
-    current_odom_pose_.pose.orientation = quaternion_operation::rotation(
-      current_odom_pose_.pose.orientation, twist_angular_quat);
+    current_odom_pose_.pose.orientation =
+      quaternion_operation::rotation(current_odom_pose_.pose.orientation, twist_angular_quat);
     Eigen::Vector3d trans_vec;
     trans_vec(0) = (data_[0].twist.linear.x + data_[1].twist.linear.x) * duration * 0.5;
     trans_vec(1) = (data_[0].twist.linear.y + data_[1].twist.linear.y) * duration * 0.5;
     trans_vec(2) = (data_[0].twist.linear.z + data_[1].twist.linear.z) * duration * 0.5;
-    Eigen::Matrix3d rotation_mat = quaternion_operation::getRotationMatrix(
-      current_odom_pose_.pose.orientation);
+    Eigen::Matrix3d rotation_mat =
+      quaternion_operation::getRotationMatrix(current_odom_pose_.pose.orientation);
     trans_vec = rotation_mat * trans_vec;
     current_odom_pose_.pose.position.x = current_odom_pose_.pose.position.x + trans_vec(0);
     current_odom_pose_.pose.position.x = current_odom_pose_.pose.position.x + trans_vec(1);
@@ -115,12 +116,13 @@ void OdomFramePublisherComponent::currentTwistCallback(
     try {
       tf2::Transform odom_pose_tf2;
       tf2::convert(current_odom_pose_.pose, odom_pose_tf2);
-      tf2::Quaternion q(current_pose_.pose.orientation.x, current_pose_.pose.orientation.y,
+      tf2::Quaternion q(
+        current_pose_.pose.orientation.x, current_pose_.pose.orientation.y,
         current_pose_.pose.orientation.z, current_pose_.pose.orientation.w);
-      tf2::Transform tmp_tf(q,
-        tf2::Vector3(
-          current_pose_.pose.position.x, current_pose_.pose.position.y,
-          current_pose_.pose.position.z));
+      tf2::Transform tmp_tf(
+        q, tf2::Vector3(
+             current_pose_.pose.position.x, current_pose_.pose.position.y,
+             current_pose_.pose.position.z));
       geometry_msgs::msg::PoseStamped tmp_tf_stamped;
       tmp_tf_stamped.header.frame_id = robot_frame_id_;
       tmp_tf_stamped.header.stamp = current_pose_.header.stamp;
