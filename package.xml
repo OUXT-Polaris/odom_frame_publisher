@@ -38,7 +38,7 @@
   <exec_depend>eigen</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
+  <test_depend>ouxt_lint_common</test_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
