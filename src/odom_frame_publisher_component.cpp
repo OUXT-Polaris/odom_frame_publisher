@@ -65,7 +65,7 @@ OdomFramePublisherComponent::OdomFramePublisherComponent(const rclcpp::NodeOptio
   current_odom_pose_.pose.orientation.z = 0;
   current_odom_pose_.pose.orientation.w = 1;
   odom_pose_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("odom_pose", 1);
-  current_twist_sub_ = this->create_subscription<geometry_msgs::msg::Twist>(
+  current_twist_sub_ = this->create_subscription<geometry_msgs::msg::TwistStamped>(
     current_twist_topic, 1,
     std::bind(&OdomFramePublisherComponent::currentTwistCallback, this, std::placeholders::_1));
   current_pose_sub_ = this->create_subscription<geometry_msgs::msg::PoseStamped>(
