@@ -75,7 +75,6 @@ extern "C" {
 #include <tf2/LinearMath/Transform.h>
 #include <tf2/convert.h>
 #include <tf2/impl/convert.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include <tf2_ros/buffer.h>
 #include <tf2_ros/transform_broadcaster.h>
 #include <tf2_ros/transform_listener.h>
@@ -83,6 +82,7 @@ extern "C" {
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <geometry_msgs/msg/twist_stamped.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
 // Headers in Boost
 #include <boost/circular_buffer.hpp>
